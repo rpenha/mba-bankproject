@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankProject", "src\BankProject\BankProject.csproj", "{81C80611-C396-4DA5-B68A-F5F395252EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankTests", "tests\BankTests\BankTests.csproj", "{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{01876C96-85C9-45A4-92B9-549A46F6842B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E0836A1D-2021-489F-B2FD-8D7C8D35CC8A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{81C80611-C396-4DA5-B68A-F5F395252EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81C80611-C396-4DA5-B68A-F5F395252EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81C80611-C396-4DA5-B68A-F5F395252EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81C80611-C396-4DA5-B68A-F5F395252EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{81C80611-C396-4DA5-B68A-F5F395252EE8} = {01876C96-85C9-45A4-92B9-549A46F6842B}
+		{D9CAD7B2-446C-4555-9D7D-61CD2EC048F3} = {E0836A1D-2021-489F-B2FD-8D7C8D35CC8A}
+	EndGlobalSection
+EndGlobal
