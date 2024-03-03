@@ -9,12 +9,12 @@ public class Account
         _balance = initBalance;
     }
 
-    public void Deposit(decimal amount)
+    public virtual void Deposit(decimal amount)
     {
         _balance += amount;
     }
 
-    public bool Withdraw(decimal amount)
+    public virtual bool Withdraw(decimal amount)
     {
         var result = false;
         if (amount > _balance) return result;
@@ -24,5 +24,5 @@ public class Account
         return result;
     }
 
-    public decimal GetBalance() => _balance;
+    public virtual decimal GetBalance() => _balance;
 }

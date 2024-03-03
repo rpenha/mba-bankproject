@@ -11,12 +11,9 @@ public class CheckingAccount : Account
         _currentLimit = _totalLimit;
     }
 
-    public decimal GetBalance()
-    {
-        return base.GetBalance() + _currentLimit;
-    }
+    public override decimal GetBalance() => base.GetBalance() + _currentLimit;
 
-    public void Deposit(decimal amount)
+    public override void Deposit(decimal amount)
     {
         if (_currentLimit < _totalLimit)
         {
@@ -37,7 +34,7 @@ public class CheckingAccount : Account
         }
     }
 
-    public bool Withdraw(decimal amount)
+    public override bool Withdraw(decimal amount)
     {
         var result = false;
         if (amount <= base.GetBalance())
