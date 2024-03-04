@@ -12,8 +12,8 @@ public readonly record struct Name
         var constraints = value.Length;
         _value = constraints switch
                  {
-                     < MinLength => throw new ArgumentOutOfRangeException(nameof(value), $"O valor deve ter ao menos {MinLength} caracteres"),
-                     > MaxLength => throw new ArgumentOutOfRangeException(nameof(value), $"O valor não deve exceder {MinLength} caracteres"),
+                     < MinLength => throw new ArgumentOutOfRangeException(nameof(value), $"O nome deve ter ao menos {MinLength} caracteres."),
+                     > MaxLength => throw new ArgumentOutOfRangeException(nameof(value), $"O nome não deve exceder {MaxLength} caracteres."),
                      _ => value
                  };
     }

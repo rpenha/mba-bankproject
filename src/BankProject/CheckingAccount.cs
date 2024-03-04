@@ -2,7 +2,7 @@ namespace BankProject;
 
 public class CheckingAccount : Account
 {
-    private decimal _totalLimit;
+    private readonly decimal _totalLimit;
     private decimal _currentLimit;
 
     public CheckingAccount(decimal initBalance, decimal limit) : base(initBalance)
