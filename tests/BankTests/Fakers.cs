@@ -10,7 +10,7 @@ public static class Fakers
     {
         public BankFaker() : base(Constants.Locale)
         {
-            CustomInstantiator(f => new Bank(f.Company.CompanyName(2)));
+            CustomInstantiator(f => new Bank(f.Random.String(Name.MinLength, Name.MaxLength)));
         }
     }
 

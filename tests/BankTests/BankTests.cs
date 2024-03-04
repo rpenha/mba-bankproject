@@ -66,35 +66,18 @@ public class BankTests
         // Assert
         act.Should().Throw<ArgumentOutOfRangeException>();
     }
-}
-
-public class NameTests
-{
-    private static readonly Faker Faker = new(Constants.Locale);
-
-    [Fact]
-    public void Create_WithValidNames_ReturnsInstance()
-    {
-        // Arrange
-        var name = Faker.Random.String(Name.MinLength, Name.MaxLength);
-
-        // Act
-        var sut = new Name(name);
-
-        // Assert
-        sut.Should().NotBeNull();
-    }
+    
     
     [Fact]
-    public void ToString_Returns_Name()
+    public void Name_Returns_CorrectName()
     {
         // Arrange
         var expected = Faker.Random.String(Name.MinLength, Name.MaxLength);
-
+        
         // Act
-        var sut = new Name(expected).ToString();
-
+        var sut = new Bank(expected).Name;
+        
         // Assert
-        sut.Should().BeEquivalentTo(expected);
+        sut.Should().Be(expected);
     }
 }

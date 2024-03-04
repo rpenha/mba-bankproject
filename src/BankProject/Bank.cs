@@ -29,7 +29,7 @@ public class Bank
         return _customerList[position];
     }
 
-    public IList<Customer> GetCustomerList()
+    public IEnumerable<Customer> GetCustomerList()
     {
         return _customerList.ToImmutableList();
     }
