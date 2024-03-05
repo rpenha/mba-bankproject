@@ -3,7 +3,7 @@ namespace BankTests;
 public class AccountTests
 {
     private static readonly Faker Faker = new(Constants.Locale);
-    private decimal _initialBalance;
+    private readonly decimal _initialBalance;
 
     public AccountTests()
     {

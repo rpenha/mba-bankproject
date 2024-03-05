@@ -5,6 +5,7 @@ public static class Fakers
     public static BankFaker Bank => new();
     public static CustomerFaker Customer => new();
     public static AccountFaker Account => new();
+    public static PositiveBalanceCheckingAccountFaker PositiveBalanceCheckingAccount => new();
     
     public class BankFaker : Faker<Bank>
     {
@@ -30,6 +31,20 @@ public static class Fakers
         public AccountFaker() : base(Constants.Locale)
         {
             CustomInstantiator(f => new Account(f.Random.Decimal(1_000, 1_000_000)));
+        }
+    }
+
+    public class PositiveBalanceCheckingAccountFaker : Faker<CheckingAccount>
+    {
+        public PositiveBalanceCheckingAccountFaker() : base(Constants.Locale)
+        {
+            CustomInstantiator(f =>
+            {
+                var limit = f.Random.Decimal(0, 1_000_000);
+                var initBalance = f.Random.Decimal(limit);
+                var account = new CheckingAccount(initBalance, limit);
+                return account;
+            });
         }
     }
 }

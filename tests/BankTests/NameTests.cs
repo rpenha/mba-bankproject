@@ -34,7 +34,7 @@ public class NameTests
     public void Create_WithInvalidMinLength_ThrowsArgumentException()
     {
         // Arrange
-        var name = Faker.Random.String(0, Name.MinLength);
+        var name = Faker.Random.String(0, Name.MinLength - 1);
 
         // Act
         var act = () => new Name(name);
@@ -50,7 +50,7 @@ public class NameTests
     public void Create_WithInvalidMaxLength_ThrowsArgumentException()
     {
         // Arrange
-        var name = Faker.Random.String(Name.MaxLength, Name.MaxLength + 10);
+        var name = Faker.Random.String(Name.MaxLength + 1, Name.MaxLength + 20);
 
         // Act
         var act = () => new Name(name);

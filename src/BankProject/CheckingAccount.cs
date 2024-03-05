@@ -11,13 +11,13 @@ public class CheckingAccount : Account
         _currentLimit = _totalLimit;
     }
 
-    public override decimal GetBalance() => base.GetBalance() + _currentLimit;
+    public override decimal GetBalance() => base.GetBalance() + _currentLimit; 
 
     public override void Deposit(decimal amount)
     {
         if (_currentLimit < _totalLimit)
         {
-            decimal diference = _totalLimit - _currentLimit;
+            var diference = _totalLimit - _currentLimit;
             if (diference > amount)
             {
                 _currentLimit += amount;
