@@ -1,6 +1,7 @@
 namespace BankTests;
 
-public class SavingAccountTests : AccountTests
+[Trait("Category", "Account Tests")]
+public class SavingAccountTests : BaseAccountTests
 {
     protected override Account CreateAccount(decimal initialBalance) => new SavingsAccount(initialBalance);
 }

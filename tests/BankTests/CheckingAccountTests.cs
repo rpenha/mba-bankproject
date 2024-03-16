@@ -1,5 +1,6 @@
 namespace BankTests;
 
+[Trait("Category", "Account Tests")]
 public class CheckingAccountTests
 {
     private static readonly Faker Faker = new(Constants.Locale);
@@ -54,10 +55,6 @@ public class CheckingAccountTests
         // Assert
         sut.Should().Be(expected);
     }
-}
-
-public class CheckingAccountWithdrawTests
-{
     public static IEnumerable<object[]> WithdrawValidAmountArguments
     {
         get
