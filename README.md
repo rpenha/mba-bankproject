@@ -46,7 +46,9 @@ tests (26 tests) Success
 
 ## Tests Coverage Results
 
-[Click here to interactive code coverage results](Coverage.html)
+Interactive code coverage results opening file `Coverage.html` on the browser.
+
+![Interactive coverage example](./InteractiveCoverage.png)
 
 ![Coverage](./Coverage.png)
 
