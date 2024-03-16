@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>/home/rodolfo/Documents/MBA/SOFTWARE_ENGINEERING_DEVELOPMENT/BankProject/src/BankProject/CheckingAccount.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+namespace BankProject;
+
+public class CheckingAccount : Account
+{
+    private readonly decimal _totalLimit;
+    private decimal _currentLimit;
+
+    public CheckingAccount(decimal initBalance, decimal limit) : base(initBalance)
+    {
+        _totalLimit = limit;
+        _currentLimit = _totalLimit;
+    }
+
+    public override decimal GetBalance() =&gt; base.GetBalance() + _currentLimit;
+
+    public override void Deposit(decimal amount)
+    {
+        var isUsingLimit = IsUsingLimit();
+        var usedLimit = GetUsedLimit();
+        var depositExceedsUsedLimit = amount &gt; usedLimit;
+        var constraints = (isUsingLimit, depositExceedsUsedLimit);
+
+        switch (constraints)
+        {
+            case (false, _):
+                base.Deposit(amount);
+                break;
+            case (true, false):
+                _currentLimit += amount;
+                break;
+            case (true, true):
+                amount -= usedLimit;
+                _currentLimit = _totalLimit;
+                base.Deposit(amount);
+                break;
+        }
+    }
+
+    public override bool Withdraw(decimal amount)
+    {
+        var balance = base.GetBalance();
+        
+        if (amount &lt;= balance)
+        {
+            return base.Withdraw(amount);
+        }
+
+        var currentLimit = GetCurrentLimit();
+        if (amount &gt; balance + currentLimit) return false;
+        _currentLimit -= amount - balance;
+        return base.Withdraw(balance);
+    }
+
+    private decimal GetUsedLimit() =&gt; _totalLimit - _currentLimit;
+
+    private bool IsUsingLimit() =&gt; _currentLimit &lt; _totalLimit;
+
+    public decimal GetTotalLimit() =&gt; _totalLimit;
+
+    public decimal GetCurrentLimit() =&gt; _currentLimit;
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[8,66,8,83,1],[9,5,9,6,1],[10,9,10,29,1],[11,9,11,37,1],[12,5,12,6,1],[14,45,14,78,1],[17,5,17,6,1],[18,9,18,43,1],[19,9,19,40,1],[20,9,20,58,1],[21,9,21,67,1],[23,9,23,29,1],[26,17,26,38,1],[27,17,27,23,1],[29,17,29,41,1],[30,17,30,23,1],[32,17,32,37,1],[33,17,33,45,1],[34,17,34,38,1],[35,17,35,23,1],[37,5,37,6,1],[40,5,40,6,1],[41,9,41,41,1],[43,9,43,31,1],[44,9,44,10,1],[45,13,45,42,1],[48,9,48,46,1],[49,9,49,45,1],[49,46,49,59,1],[50,9,50,43,1],[51,9,51,39,1],[52,5,52,6,1],[54,39,54,66,1],[56,36,56,63,1],[58,39,58,50,1],[60,41,60,54,1]]);
+    </script>
+  </body>
+</html>
