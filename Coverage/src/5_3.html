@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>/home/rodolfo/Documents/MBA/SOFTWARE_ENGINEERING_DEVELOPMENT/BankProject/src/BankProject/Name.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+namespace BankProject;
+
+public readonly record struct Name
+{
+    public const int MinLength = 5;
+    public const int MaxLength = 32;
+    private readonly string _value;
+
+    public Name(string value)
+    {
+        ArgumentNullException.ThrowIfNull(value);
+        var constraints = value.Length;
+        _value = constraints switch
+                 {
+                     &lt; MinLength =&gt; throw new ArgumentOutOfRangeException(nameof(value), $&quot;O nome deve ter ao menos {MinLength} caracteres.&quot;),
+                     &gt; MaxLength =&gt; throw new ArgumentOutOfRangeException(nameof(value), $&quot;O nome n&#227;o deve exceder {MaxLength} caracteres.&quot;),
+                     _ =&gt; value
+                 };
+    }
+
+    public override string ToString() =&gt; _value;
+
+    public static implicit operator string(Name value) =&gt; value.ToString();
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[10,5,10,6,1],[11,9,11,50,1],[12,9,12,40,1],[13,9,15,37,1],[15,37,15,142,1],[15,142,16,37,1],[16,37,16,141,1],[16,141,17,27,1],[17,27,17,32,1],[17,32,18,20,1],[19,5,19,6,1],[21,42,21,48,1],[23,59,23,75,1]]);
+    </script>
+  </body>
+</html>

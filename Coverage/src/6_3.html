@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>/home/rodolfo/Documents/MBA/SOFTWARE_ENGINEERING_DEVELOPMENT/BankProject/src/BankProject/Customer.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+namespace BankProject;
+
+public class Customer
+{
+    private string _firstName;
+    private string _lastName;
+    private string _address;
+    private Account _account;
+    private DateTime? _dateOfBirthday;
+
+    public Customer(string firstName, string lastName, string address, Account account)
+    {
+        _firstName = firstName;
+        _lastName = lastName;
+        _address = address;
+        _account = account;
+    }
+
+    public string GetFirstName() =&gt; _firstName;
+
+    public void SetFirstName(string firstName) =&gt; _firstName = firstName;
+
+    public string GetLastName() =&gt; _lastName;
+
+    public void SetLastName(string lastName) =&gt; _lastName = lastName;
+
+    public string GetAddress() =&gt; _address;
+
+    public void SetAddress(string address) =&gt; _address = address;
+
+    public DateTime? GetDateOfBirthday() =&gt; _dateOfBirthday;
+
+    public void SetDateOfBirthday(DateTime? dateOfBirthday) =&gt; _dateOfBirthday = dateOfBirthday;
+
+    public Account GetAccount() =&gt; _account;
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[11,5,11,88,1],[12,5,12,6,1],[13,9,13,32,1],[14,9,14,30,1],[15,9,15,28,1],[16,9,16,28,1],[17,5,17,6,1],[19,37,19,47,0],[21,51,21,73,0],[23,36,23,45,0],[25,49,25,69,0],[27,35,27,43,0],[29,47,29,65,0],[31,45,31,60,0],[33,64,33,96,0],[35,36,35,44,0]]);
+    </script>
+  </body>
+</html>

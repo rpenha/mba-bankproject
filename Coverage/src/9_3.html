@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>/home/rodolfo/Documents/MBA/SOFTWARE_ENGINEERING_DEVELOPMENT/BankProject/src/BankProject/Account.cs</title>
+    <script type="text/javascript" src="../js/dotcover.sourceview.js"></script>
+    <link rel="stylesheet" type="text/css" href="../css/dotcover.report.css" />
+  </head>
+  <body>
+    <pre id="content" class="source-code">
+namespace BankProject;
+
+public class Account
+{
+    private decimal _balance;
+
+    public Account(decimal initBalance)
+    {
+        _balance = initBalance;
+    }
+
+    public virtual void Deposit(decimal amount)
+    {
+        _balance += amount;
+    }
+
+    public virtual bool Withdraw(decimal amount)
+    {
+        var result = false;
+        if (amount &gt; _balance) return result;
+        
+        _balance -= amount;
+        result = true;
+        return result;
+    }
+
+    public virtual decimal GetBalance() =&gt; _balance;
+}
+    </pre>
+    <script type="text/javascript">
+      highlightRanges([[7,5,7,40,1],[8,5,8,6,1],[9,9,9,32,1],[10,5,10,6,1],[13,5,13,6,1],[14,9,14,28,1],[15,5,15,6,1],[18,5,18,6,1],[19,9,19,28,1],[20,9,20,31,1],[20,32,20,46,1],[22,9,22,28,1],[23,9,23,23,1],[24,9,24,23,1],[25,5,25,6,1],[27,44,27,52,1]]);
+    </script>
+  </body>
+</html>
