@@ -72,8 +72,3 @@ public class AccountTests
         sut.GetBalance().Should().Be(expected);
     }
 }
-
-public class SavingAccountTests : AccountTests
-{
-    protected override Account CreateAccount(decimal initialBalance) => new SavingsAccount(initialBalance);
-}
