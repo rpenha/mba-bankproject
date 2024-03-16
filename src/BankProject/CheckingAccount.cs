@@ -11,52 +11,51 @@ public class CheckingAccount : Account
         _currentLimit = _totalLimit;
     }
 
-    public override decimal GetBalance() => base.GetBalance() + _currentLimit; 
+    public override decimal GetBalance() => base.GetBalance() + _currentLimit;
 
     public override void Deposit(decimal amount)
     {
-        if (_currentLimit < _totalLimit)
+        var isUsingLimit = IsUsingLimit();
+        var usedLimit = GetUsedLimit();
+        var depositExceedsUsedLimit = amount > usedLimit;
+        var constraints = (isUsingLimit, depositExceedsUsedLimit);
+
+        switch (constraints)
         {
-            var diference = _totalLimit - _currentLimit;
-            if (diference > amount)
-            {
+            case (false, _):
+                base.Deposit(amount);
+                break;
+            case (true, false):
                 _currentLimit += amount;
-            }
-            else
-            {
+                break;
+            case (true, true):
+                amount -= usedLimit;
                 _currentLimit = _totalLimit;
-                base.Deposit(amount - diference);
-            }
-        }
-        else
-        {
-            base.Deposit(amount);
+                base.Deposit(amount);
+                break;
         }
     }
 
     public override bool Withdraw(decimal amount)
     {
-        var result = false;
-        if (amount <= base.GetBalance())
+        var balance = base.GetBalance();
+        
+        if (amount <= balance)
         {
-            result = base.Withdraw(amount);
-        }
-        else if (amount <= GetBalance() + GetCurrentLimit())
-        {
-            _currentLimit -= GetBalance();
-            result = base.Withdraw(GetBalance());
+            return base.Withdraw(amount);
         }
 
-        return result;
+        var currentLimit = GetCurrentLimit();
+        if (amount > balance + currentLimit) return false;
+        _currentLimit -= amount - balance;
+        return base.Withdraw(balance);
     }
 
-    public decimal GetTotalLimit()
-    {
-        return _totalLimit;
-    }
+    private decimal GetUsedLimit() => _totalLimit - _currentLimit;
 
-    public decimal GetCurrentLimit()
-    {
-        return _currentLimit;
-    }
+    private bool IsUsingLimit() => _currentLimit < _totalLimit;
+
+    public decimal GetTotalLimit() => _totalLimit;
+
+    public decimal GetCurrentLimit() => _currentLimit;
 }

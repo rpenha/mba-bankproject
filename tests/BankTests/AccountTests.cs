@@ -10,15 +10,17 @@ public class AccountTests
         _initialBalance = Faker.Random.Decimal(0m, 1_000_000);
     }
 
+    protected virtual Account CreateAccount(decimal initialBalance) => new(initialBalance);
+
     [Fact]
-    public void Deposit_ShouldIncrementBalance()
+    public void Deposit_ShouldIncrementBalance_WithValidAmount()
     {
         // Arrange
         var deposit = Faker.Random.Decimal(0m, 1_000_000);
         var expected = _initialBalance + deposit;
 
         // Act
-        var account = new Account(_initialBalance);
+        var account = CreateAccount(_initialBalance);
         account.Deposit(deposit);
 
         // Assert
@@ -26,11 +28,11 @@ public class AccountTests
     }
 
     [Fact]
-    public void Withdraw_ReturnsFalse_WhenInsufficientBalance()
+    public void Withdraw_ShouldReturnFalse_WhenAccountHasEnoughBalance()
     {
         // Arrange
         var amount = Faker.Random.Decimal(_initialBalance, decimal.MaxValue);
-        var account = new Account(_initialBalance);
+        var account = CreateAccount(_initialBalance);
         var expected = account.GetBalance();
 
         // Act
@@ -42,11 +44,11 @@ public class AccountTests
     }
 
     [Fact]
-    public void Withdraw_ReturnsFalse_WhenSufficientBalance()
+    public void Withdraw_SholdReturnFalse_WhenAccountHasntEnoughBalance()
     {
         // Arrange
         var amount = Faker.Random.Decimal(0, _initialBalance);
-        var account = new Account(_initialBalance);
+        var account = CreateAccount(_initialBalance);
         var expected = account.GetBalance() - amount;
 
         // Act
@@ -58,15 +60,20 @@ public class AccountTests
     }
 
     [Fact]
-    public void Balance_Returns_CorrectValue()
+    public void Balance_ShouldReturn_ActualAccountBalance()
     {
         // Arrange
         var expected = _initialBalance;
 
         // Act
-        var sut = new Account(_initialBalance);
+        var sut = CreateAccount(_initialBalance);
 
         // Assert
         sut.GetBalance().Should().Be(expected);
     }
+}
+
+public class SavingAccountTests : AccountTests
+{
+    protected override Account CreateAccount(decimal initialBalance) => new SavingsAccount(initialBalance);
 }
